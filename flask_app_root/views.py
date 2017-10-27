@@ -5,11 +5,11 @@
 
 import csv
 
-from forms import PartyInformationForm
+from flask_app_root.app import app
+from flask_app_root.forms import PartyInformationForm
 from flask import render_template, request
 
-from app import app
-from models import PartyInformationLogic
+from flask_app_root.models import PartyInformationLogic
 
 
 @app.route('/')

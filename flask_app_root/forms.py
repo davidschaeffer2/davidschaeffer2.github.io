@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import SelectField, IntegerField, FieldList, StringField
 
-from models import PartyInformationLogic
+from flask_app_root.models import PartyInformationLogic
 
 
 class PartyInformationForm(FlaskForm):

@@ -1,5 +1,4 @@
-from views import app
-from app import freezer
+from flask_app_root.app import app, freezer
 
 
 if __name__ == '__main__':
