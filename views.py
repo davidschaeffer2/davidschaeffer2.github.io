@@ -4,25 +4,24 @@
 
 
 import csv
-
-from flask_app_root.app import app
-from flask_app_root.forms import PartyInformationForm
 from flask import render_template, request
 
-from flask_app_root.models import PartyInformationLogic
+from app import app
+from forms import PartyInformationForm
+from models import PartyInformationLogic
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
 
-@app.route('/contact/')
+@app.route('/contact/', methods=['GET'])
 def contact():
     return render_template('contact.html')
 
 
-@app.route('/about/')
+@app.route('/about/', methods=['GET'])
 def about():
     return render_template('about.html')
 
