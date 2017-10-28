@@ -16,17 +16,17 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/pages/contact/', methods=['GET'])
+@app.route('/contact.html', methods=['GET'])
 def contact():
     return render_template('contact.html')
 
 
-@app.route('/pages/about/', methods=['GET'])
+@app.route('/about.html', methods=['GET'])
 def about():
     return render_template('about.html')
 
 
-@app.route('/pages/finntools/', methods=['GET', 'POST'])
+@app.route('/finntools.html', methods=['GET', 'POST'])
 def finntools():
     if request.method == 'GET':
         party_form = PartyInformationForm()
