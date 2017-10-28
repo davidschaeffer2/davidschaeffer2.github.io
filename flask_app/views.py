@@ -3,11 +3,12 @@
 # 10/23/2017
 
 import csv
-from flask import render_template, request
 
-from app import app
-from forms import PartyInformationForm
-from models import PartyInformationLogic
+from flask_app.app import app
+from flask import render_template, request
+from flask_app.forms import PartyInformationForm
+
+from flask_app.models import PartyInformationLogic
 
 
 @app.route('/', methods=['GET'])
