@@ -67,7 +67,7 @@ def process_party_info_form():
 
 def get_creatures_for_budget(exp_budget, filter_char):
     available_creatures = []
-    with open('./storage/bestiary.csv', 'r') as bestiary:
+    with open('./bestiary.csv', 'r') as bestiary:
         dict_reader = csv.DictReader(bestiary)
         for creature in dict_reader:
             creature['XP'] = int(creature['XP'].replace(',', ''))
