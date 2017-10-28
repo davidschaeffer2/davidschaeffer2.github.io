@@ -41,17 +41,17 @@
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="nav-item" href="{{ url_for('contact') }}">
+                        <a class="nav-item" href="/contact/">
                             Contact
                         </a>
                     </li>
                     <li>
-                        <a class="nav-item" href="{{ url_for('about') }}">
+                        <a class="nav-item" href="/about/">
                             About
                         </a>
                     </li>
                     <li>
-                        <a class="nav-item" href="{{ url_for('finntools') }}">
+                        <a class="nav-item" href="/finntools/">
                             FinnTools
                         </a>
                     </li>
@@ -77,21 +77,67 @@
 
         <div class="row">
             <div class="col-lg-12">
-                {% block project %}
-                    {% block project_name %}{% endblock %}
-                    {% block project_img %}{% endblock %}
-                    {% block project_short_desc %}{% endblock %}
-                    {% block project_long_desc %}{% endblock %}
-                {% endblock project %}
+                
+    
+        <h1><a href="https://davidschaeffer2.github.io/casper/">casper</a></h1>
+    
 
-                {% block project2 %}
-                    {% block project_name2 %}{% endblock %}
-                    {% block project_img2 %}{% endblock %}
-                    {% block project_short_desc2 %}{% endblock %}
-                    {% block project_long_desc2 %}{% endblock %}
-                {% endblock project2 %}
+    
+        <img src="../static/img/casper/casper1.PNG">
+    
 
-                {% block main %}{% endblock main %}
+    
+        <h4>
+        <a href="https://davidschaeffer2.github.io/casper/">casper</a> is a
+        <a href="http://www.discordapp.com">Discord</a> bot written in Python with the
+        <a href="https://github.com/rapptz/discord.py">Discord.py library.</a>
+        </h4>
+    
+
+    
+        <p>
+        Still a work-in-progress somewhat. It's functional but not ready for public use where I can be hands-off.
+        </p>
+        <p>
+        It has a variety of features such as, but not limited to:<br>
+        Commands are broken up into different cogs relatively based on what they do;<br>
+        games, jukebox, memes, reddit, rpg, news, and utilities<br>
+        The owner of the bot can use the load and unload commands to manage individual cogs.
+        </p>
+    
+
+
+                
+    
+        <h1>
+            <a href="/finntools/">FinnTools</a>
+        </h1>
+    
+
+    
+        <img src="../static/img/finntools/finntools.PNG">
+    
+
+    
+        <h4>
+        <a href="/finntools/">FinnTools</a>
+        is a small side project I made that allows a DM to create encounters
+        for their Pathfinder groups.
+        </h4>
+    
+
+    
+        <p>
+        At the moment, it gives you a very rough idea of what creatures and how
+        many of them would fit into a combat encounter for your group based on
+        the number of players in the group, their levels, and how hard you want
+        the encounter to be. It then gives you a list of creatures that fall
+        into that range.
+        </p>
+    
+
+
+                
             </div>
         </div>
     </div>
