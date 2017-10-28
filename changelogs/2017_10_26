@@ -1,5 +1,0 @@
-- Fixed formatting issue on /contact
-- Updated where flask_freeze files are stored in attempt to fix bug once
-uploaded to github.
-    - Getting flask pages hosted on github has you jumping through a number of
-    hoops.
