@@ -2,7 +2,6 @@
 # David Schaeffer
 # 10/23/2017
 
-
 import csv
 from flask import render_template, request
 
