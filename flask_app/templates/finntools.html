@@ -8,7 +8,7 @@
     <div class="content">
         <h3>Encounter Creator</h3>
 
-        <form action="{{ url_for('finntools') }}" method="GET">
+        <form action="{{ url_for('finntools') }}" method="POST">
             {{ party_form.number_of_characters.label }}
             {{ party_form.number_of_characters(onchange='this.form.submit()') }}
             <br>
