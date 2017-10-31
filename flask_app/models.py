@@ -32,7 +32,8 @@ class PartyInformationLogic:
     def get_apl(num_chars, levels, difficulty):
         apl = 0
         for level in levels:
-            if level is not None:  # going from 2->5 brings us
+            if level is not None:
+                print(level)
                 apl += level
         apl = apl/num_chars
         if num_chars <= 3:

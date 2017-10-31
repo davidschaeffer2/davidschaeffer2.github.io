@@ -26,42 +26,48 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/finntools.html', methods=['GET', 'POST'])
+@app.route('/finntools.html', methods=['GET'])
 def finntools():
-    if request.method == 'GET':
+    if request.args:
+        party_form = process_party_form_get(request.args)
+        return render_template('finntools.html', party_form=party_form,
+                               num_characters=party_form.number_of_characters.
+                               data, available_creatures=
+                               get_creatures_for_budget(
+                                   party_form.exp_budget.data,
+                                   party_form.filter_field.data))
+    else:
+        print('that')
         party_form = PartyInformationForm()
         return render_template('finntools.html', party_form=party_form)
-    party_form = process_party_info_form()
-    filter_char = party_form.filter_field.data or 'A'
-    available_creatures = get_creatures_for_budget(party_form.exp_budget.data,
-                                                   filter_char)
-    return render_template('finntools.html', party_form=party_form,
-                           num_characters=party_form.number_of_characters.data,
-                           alphabet=PartyInformationLogic.get_alphabet(),
-                           available_creatures=available_creatures)
 
 
-def process_party_info_form():
-    party_form = PartyInformationForm(request.form)
-    print('Party_form object: {}'.format(party_form.data))
-    while party_form.number_of_characters.data > \
-            len(party_form.character_level.entries):
-        party_form.character_level.append_entry(1)
-    while party_form.number_of_characters.data < \
-            len(party_form.character_level.entries):
-        party_form.character_level.pop_entry()
-    print('Num entries: %d' % len(party_form.character_level.entries))
-    print(party_form.character_level.entries)
-    print(party_form.character_level.data)
-    apl = round(
-        PartyInformationLogic.get_apl(party_form.number_of_characters.data,
-                                      party_form.character_level.data,
-                                      party_form.difficulty.data))
-    print(apl)
-    party_form.average_party_level.process_data(apl)
-    exp_budget = PartyInformationLogic.get_cr_exp_budget(apl)
-    print(exp_budget)
-    party_form.exp_budget.process_data(exp_budget)
+def process_party_form_get(args):
+    for arg in args.items():
+        print(arg)
+    party_form = PartyInformationForm()
+    if args['number_of_characters']:
+        party_form.number_of_characters.process_data(
+            args['number_of_characters'])
+        for field, data in args.items():
+            if 'character_level' in field:
+                party_form.character_level.append_entry(data)
+        while party_form.number_of_characters.data > \
+                len(party_form.character_level.entries):
+            party_form.character_level.append_entry(1)
+        while party_form.number_of_characters.data < \
+                len(party_form.character_level.entries):
+            party_form.character_level.pop_entry()
+        party_form.difficulty.process_data(args['difficulty'])
+        apl = round(
+            PartyInformationLogic.get_apl(party_form.number_of_characters.data,
+                                          party_form.character_level.data,
+                                          party_form.difficulty.data))
+        print('APL: %d' % apl)
+        party_form.average_party_level.process_data(apl)
+        exp_budget = PartyInformationLogic.get_cr_exp_budget(apl)
+        party_form.exp_budget.process_data(exp_budget)
+        party_form.filter_field.process_data(args['filter_field'])
     return party_form
 
 
@@ -75,3 +81,28 @@ def get_creatures_for_budget(exp_budget, filter_char):
                     creature['Name'].startswith(filter_char):
                 available_creatures.append(creature)
     return available_creatures
+
+
+# Below function is for POST, which doesn't work on gh-pages
+# def process_party_info_form():
+#     party_form = PartyInformationForm(request.form)
+#     print('Party_form object: {}'.format(party_form.data))
+#     while party_form.number_of_characters.data > \
+#             len(party_form.character_level.entries):
+#         party_form.character_level.append_entry(1)
+#     while party_form.number_of_characters.data < \
+#             len(party_form.character_level.entries):
+#         party_form.character_level.pop_entry()
+#     print('Num entries: %d' % len(party_form.character_level.entries))
+#     print(party_form.character_level.entries)
+#     print(party_form.character_level.data)
+#     apl = round(
+#         PartyInformationLogic.get_apl(party_form.number_of_characters.data,
+#                                       party_form.character_level.data,
+#                                       party_form.difficulty.data))
+#     print(apl)
+#     party_form.average_party_level.process_data(apl)
+#     exp_budget = PartyInformationLogic.get_cr_exp_budget(apl)
+#     print(exp_budget)
+#     party_form.exp_budget.process_data(exp_budget)
+#     return party_form
