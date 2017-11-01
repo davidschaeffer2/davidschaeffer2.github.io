@@ -4,7 +4,6 @@
 
 import csv
 from flask import render_template, request
-import os
 
 from flask_app.app import app
 from flask_app.forms import PartyInformationForm
@@ -71,7 +70,7 @@ def process_party_form_get(args):
 
 def get_creatures_for_budget(exp_budget, filter_char):
     available_creatures = []
-    with open('flask_app/bestiary.csv', 'r') as bestiary:
+    with open('bestiary.csv', 'r') as bestiary:
         dict_reader = csv.DictReader(bestiary)
         for creature in dict_reader:
             creature['XP'] = int(creature['XP'].replace(',', ''))
